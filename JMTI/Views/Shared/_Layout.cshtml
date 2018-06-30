@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Emissor de NF-e</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Emissor de NF-e", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Cadastros Iniciais
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Parceiros", "Parceiro", "Cadastro")</li>
+                            <li>@Html.ActionLink("Vendedores", "Vendedor", "Cadastro")</li>
+                            <li>@Html.ActionLink("Tributação", "Tributacao", "Cadastro")</li>
+                            <li>@Html.ActionLink("Modelo de Nota Fiscal", "ModeloNota", "Cadastro")</li>
+                            <li>@Html.ActionLink("Série de Notas Fiscais", "SerieNota", "Cadastro")</li>
+                            <li>@Html.ActionLink("Paises", "Pais", "Cadastro")</li>
+                            <li>@Html.ActionLink("Estados", "Estado", "Cadastro")</li>
+                            <li>@Html.ActionLink("Cidades", "Cidade", "Cadastro")</li>
+                            <li>@Html.ActionLink("Cep", "Cep", "Cadastro")</li>
+                            <li>@Html.ActionLink("Grupo de Usuários", "GrupoUsuario", "Cadastro")</li>
+                            <li>@Html.ActionLink("Usuários", "Usuario", "Cadastro")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Vendas
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Pedido de Venda", "PedidoVenda", "Venda")</li>
+                            <li>@Html.ActionLink("Nota Fiscal", "NotaFiscal", "Venda")</li>
+                            <li>@Html.ActionLink("Retorno de Notas", "RetornoNfe", "Venda")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Compras
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Pedido de Compra", "PedidoCompra", "Compra")</li>
+                            <li>@Html.ActionLink("Lê XML da NF-e", "LeXmlNota", "Compra")</li>
+                            <li>@Html.ActionLink("Nota Fiscal", "NotaFiscal", "Compra")</li>
+                            <li>@Html.ActionLink("Retorno de Notas", "RetornoNfe", "Compra")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Financeiro
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Contas a Pagar", "ContaPagar", "Financeiro")</li>
+                            <li>@Html.ActionLink("Contas a Receber", "ContaReceber", "Financeiro")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Estoque
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Cadastro de Produto", "CadastroProduto", "Estoque")</li>
+                            <li>@Html.ActionLink("Cadastro de Familia", "CadastroFamilia", "Estoque")</li>
+                            <li>@Html.ActionLink("Cadastro de Local de Estoque", "LocalEstoque", "Estoque")</li>
+                            <li>@Html.ActionLink("Cadastro de NCM", "CadastroNcm", "Estoque")</li>
+                            <li>@Html.ActionLink("Cadastro de CEST", "CadastroCest", "Estoque")</li>
+                            <li>@Html.ActionLink("Movimento de Estoque", "MovimentoEstoque", "Estoque")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Relatórios
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <!--PArametros actionLink 1º texto, 2º action e 3º controller -->
+                            <li>@Html.ActionLink("Relação de Parceiros", "RelacaoParceiro", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relação de Vendas", "RelacaoVenda", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relação de Compras", "RelacaoCompra", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relação de Produtos", "RelacaoProduto", "Relatorio")</li>
+                            <li>@Html.ActionLink("Relação de Vendedores", "RelacaoVendedor", "Relatorio")</li>
+                            <li>@Html.ActionLink("Kardex", "Kardex", "Relatorio")</li>
+                            <li>@Html.ActionLink("Posição do Estoque", "PosicaoEstoque", "Relatorio")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Graficos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Vendas por Vendedor", "VendaVendedor", "Grafico")</li>
+                            <li>@Html.ActionLink("Vendas por Cidade", "VendaCidade", "Grafico")</li>
+                            <li>@Html.ActionLink("Compras por Mês", "CompraMes", "Grafico")</li>
+                            <li>@Html.ActionLink("Vendas por Mês", "VendaMes", "Grafico")</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Sobre", "Sobre", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Emissor de NF-e</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
