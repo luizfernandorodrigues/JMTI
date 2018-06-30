@@ -226,12 +226,21 @@
     <Content Include="Views\Grafico\VendaMes.cshtml" />
     <Content Include="Views\Grafico\VendaCidade.cshtml" />
     <Content Include="Views\Grafico\CompraMes.cshtml" />
+    <Content Include="Views\Relatorio\RelacaoParceiro.cshtml" />
+    <Content Include="Views\Relatorio\RelacaoVendedor.cshtml" />
+    <Content Include="Views\Relatorio\RelacaoVenda.cshtml" />
+    <Content Include="Views\Relatorio\RelacaoCompra.cshtml" />
+    <Content Include="Views\Relatorio\RelacaoProduto.cshtml" />
+    <Content Include="Views\Relatorio\PosicaoEstoque.cshtml" />
+    <Content Include="Views\Relatorio\Kardex.cshtml" />
+    <Content Include="Views\Venda\PedidoVenda.cshtml" />
+    <Content Include="Views\Venda\NotaFiscal.cshtml" />
+    <Content Include="Views\Venda\RetornoNfe.cshtml" />
+    <Content Include="Views\Login\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Relatorio\" />
-    <Folder Include="Views\Venda\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
