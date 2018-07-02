@@ -9,21 +9,25 @@ namespace JMTI.Controllers
     public class GraficoController : Controller
     {
         // GET: VendaVendedor
+        [Authorize]
         public ActionResult VendaVendedor()
         {
             return View();
         }
         // GET: VendaCidade
+        [Authorize]
         public ActionResult VendaCidade()
         {
             return View();
         }
         // GET: CompraMes
+        [Authorize]
         public ActionResult CompraMes()
         {
             return View();
         }
         // GET: VendaMes
+        [Authorize]
         public ActionResult VendaMes()
         {
             return View();
