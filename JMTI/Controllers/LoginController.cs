@@ -25,7 +25,7 @@ namespace JMTI.Controllers
                 return View(login);
             }
 
-            var achou = (login.usuario.Equals("teste") && login.senha.Equals("teste"));
+            var achou = UsuarioModel.ValidarUsuario(login.usuario,login.senha);
             if (achou)
             {
                 FormsAuthentication.SetAuthCookie(login.usuario, login.lembrarMe);
@@ -43,6 +43,14 @@ namespace JMTI.Controllers
                 ModelState.AddModelError("", "Login Inválido!!");
             }
             return View(login);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
