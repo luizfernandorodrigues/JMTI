@@ -3,11 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using JMTI.Models;
 
 namespace JMTI.Controllers
 {
     public class CadastroController : Controller
     {
+        private static List<PaisModel> listaPais = new List<PaisModel>()
+        {
+            new PaisModel(){id=1, nome="Brasil", codigo="1058"},
+            new PaisModel(){id=2, nome="Argentina", codigo="1234"},
+            new PaisModel(){id=3, nome="Uruguai", codigo="7898"},
+            new PaisModel(){id=4, nome="Peru", codigo="8745"},
+        };
         // GET: Parceiro
         [Authorize]
         public ActionResult Parceiro()
@@ -42,7 +50,7 @@ namespace JMTI.Controllers
         [Authorize]
         public ActionResult Pais()
         {
-            return View();
+            return View(listaPais);
         }
         // GET: Estado
         [Authorize]
