@@ -52,6 +52,28 @@ namespace JMTI.Controllers
         {
             return View(listaPais);
         }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult RecuperarPais(int id)
+        {
+             return Json(listaPais.Find(x => x.id == id));
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ExcluirPais(int id)
+        {
+            var ret = false;
+            var registro = listaPais.Find(x => x.id == id);
+            if(registro != null)
+            {
+                listaPais.Remove(registro);
+                ret = true;
+            }
+            return Json(ret);
+        }
+
         // GET: Estado
         [Authorize]
         public ActionResult Estado()
