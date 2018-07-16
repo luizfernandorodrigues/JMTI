@@ -66,6 +66,7 @@
         </div>
     </section>
 </div>
+@Html.Hidden("id_cadastro")
 <div id="modal_cadastro" class="form-horizontal invisivel" role="dialog">
     <fieldset>
         <div class="row">
@@ -97,6 +98,7 @@
 @section Scripts{
     <script>
         function abrir_form(dados) {
+            $('#id_cadastro').val(dados.id);
             $('#txt_nome').val(dados.nome);
             $('#txt_codigo').val(dados.codigo);
 
@@ -116,52 +118,91 @@
             });
         }
 
-        $(document).on('click', '#btn_incluir', function () {
-            abrir_form({ id: 0, nome: '', codigo:'' });
-        })
-        .on('click', '.btn-alterar', function () {
-            var btn = $(this),
-                id = btn.closest('tr').attr('data-id'),
-                url = '@Url.Action("RecuperarPais", "Cadastro")',
-                param = { 'id': id };
+        function criar_linha_grid(dados) {
+            var ret =
+                '<tr data-id=' + dados.id + '>' +
+                '<td>' + dados.nome + '</td>' +
+                '<td>' + dados.codigo + '</td>' +
+                '<td>' +
+                '<a class="btn btn-primary btn-alterar" role="button" style="margin-right: 3px"><i class="glyphicon glyphicon-pencil"></i>Alterar</a>' +
+                '<a class="btn btn-danger btn-excluir" role="button"><i class="glyphicon glyphicon-trash"></i>Excluir</a>' +
+                '</td>' +
+                '</tr>';
+            return ret;
+        }
 
-            $.post(url, param, function (response) {
-                if (response) {
-                    abrir_form(response);
-                }
-            });
+        $(document).on('click', '#btn_incluir', function () {
+            abrir_form({ id: 0, nome: '', codigo: '' });
         })
+            .on('click', '.btn-alterar', function () {
+                 var btn = $(this),
+                    id = btn.closest('tr').attr('data-id'),
+                    url = '@Url.Action("RecuperarPais", "Cadastro")',
+                    param = { 'id': id };
+
+                $.post(url, param, function (response) {
+                    if (response) {
+                        abrir_form(response);
+                    }
+                });
+            })
             .on('click', '.btn-excluir', function () {
 
-             var btn = $(this),
-                 tr = btn.closest('tr'),
-                 id = tr.attr('data-id'),
-                url = '@Url.Action("ExcluirPais", "Cadastro")',
-                param = { 'id': id };
-            bootbox.confirm({
-                message: "Deseja Realmente Excluir o Registro?",
-                buttons: {
-                    confirm: {
-                        label: 'Sim',
-                        className: 'btn-success'
+                var btn = $(this),
+                    tr = btn.closest('tr'),
+                    id = tr.attr('data-id'),
+                    url = '@Url.Action("ExcluirPais", "Cadastro")',
+                    param = { 'id': id };
+                bootbox.confirm({
+                    message: "Deseja Realmente Excluir o Registro?",
+                    buttons: {
+                        confirm: {
+                            label: 'Sim',
+                            className: 'btn-success'
+                        },
+                        cancel: {
+                            label: 'Não',
+                            className: 'btn-danger'
+                        }
                     },
-                    cancel: {
-                        label: 'Não',
-                        className: 'btn-danger'
+                    callback: function (result) {
+                        if (result) {
+                            $.post(url, param, function (response) {
+                                if (response) {
+                                    tr.remove();
+                                }
+                            });
+                        }
                     }
-                },
-                callback: function (result) {
-                    if (result) {
-              $.post(url, param, function (response) {
-                if (response) {
-                    tr.remove();
-                }
-            });
-                    }
-                }
-            });
+                });
 
-           })
+            })
+            .on('click', '#btn_confirmar', function () {
+                var btn = $(this),
+                    url = '@Url.Action("SalvarPais", "Cadastro")',
+                    param = {
+                        id: $('#id_cadastro').val(),
+                        nome: $('#txt_nome').val(),
+                        codigo: $('#txt_codigo').val()
+                    };
+
+                $.post(url, param, function (response) {
+                    if (response) {
+                        if (param.id == 0) {
+                            var table = $('#grid_cadastro').find('tbody'),
+                                linha = criar_linha_grid(response);
+                            table.append(linha);
+                        } else {
+                            var linha = $('#grid_cadastro').find('tr[data-id=' + param.id + ']').find('td');
+                            linha
+                                .eq(0).html(param.nome).end()
+                                .eq(1).html(param.codigo).end();
+                        }
+
+                        $('#modal_cadastro').parents('.bootbox').modal('hide');
+                    }
+                });
+            });
     </script>
 }
 

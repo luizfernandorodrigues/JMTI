@@ -57,7 +57,7 @@ namespace JMTI.Controllers
         [Authorize]
         public ActionResult RecuperarPais(int id)
         {
-             return Json(listaPais.Find(x => x.id == id));
+            return Json(listaPais.Find(x => x.id == id));
         }
 
         [HttpPost]
@@ -66,12 +66,30 @@ namespace JMTI.Controllers
         {
             var ret = false;
             var registro = listaPais.Find(x => x.id == id);
-            if(registro != null)
+            if (registro != null)
             {
                 listaPais.Remove(registro);
                 ret = true;
             }
             return Json(ret);
+        }
+        [HttpPost]
+        [Authorize]
+        public ActionResult SalvarPais(PaisModel model)
+        {
+            var registro = listaPais.Find(x => x.id == model.id);
+            if (registro == null)
+            {
+                registro = model;
+                registro.id = listaPais.Max(x => x.id) + 1;
+                listaPais.Add(registro);
+            }
+            else
+            {
+                registro.nome = model.nome;
+                registro.codigo = model.codigo;
+            }
+            return Json(registro);
         }
 
         // GET: Estado
